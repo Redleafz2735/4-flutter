@@ -45,6 +45,23 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           ],
         ),
-        body: Container());
+        body: ListView.builder(
+            itemCount: 4,
+            itemBuilder: (context, int index) {
+              return Card(
+                elevation: 10,
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30,
+                    child: FittedBox(
+                      child: Text("500"),
+                    ),
+                  ),
+                  title: Text("รายการ"),
+                  subtitle: Text("02/01/2021"),
+                ),
+              );
+            }));
   }
 }
