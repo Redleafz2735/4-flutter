@@ -9,6 +9,7 @@ class TransactionProvider with ChangeNotifier {
     Transaction(title: "กางเกง", amount: 500, date: DateTime.now())
   ];
 
+  //ดึงข้อมูล
   List<Transaction> getTransaction() {
     return transaction;
   }
