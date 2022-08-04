@@ -11,11 +11,31 @@ class TransactionProvider with ChangeNotifier {
     return transaction;
   }
 
+  void intiDate() async {
+    var db = TransactionDB(dbName: "transactions.db");
+    //ดึงข้อมูลมาแสดงผล
+    var snapR = await db.loadAllData();
+    notifyListeners();
+  }
+
   void addTransaction(Transactions statement) async {
     var db = TransactionDB(dbName: "transactions.db");
     //บันทึำข้อมูล
     await db.InsertData(statement);
-    transaction.insert(0, statement);
+
+    //ดึงข้อมูลมาแสดงผล
+    var snapR = await db.loadAllData();
+    //ดึงที่ละแถว
+    for (var record in snapR) {
+      String d1 = record["date"] as String;
+      var didate = DateTime.parse(d1);
+      double a1 = record["amount"] as double;
+      Transactions tranlist =
+          Transactions(title: record["title"], amount: a1, date: didate);
+
+      transaction.add(tranlist);
+    }
+    transaction;
     //แจ้งเตือน Consumer
     notifyListeners();
   }

@@ -1,3 +1,6 @@
+import 'dart:ffi';
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/Transactions.dart';
 import 'package:flutter_application_1/providers/transaction_provider.dart';
@@ -11,6 +14,14 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Void initstate() {
+    // TODO: implement initstate
+    super.initstate();
+    Provider.of<TransactionProvider>(context, listen: false).intiDate();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
