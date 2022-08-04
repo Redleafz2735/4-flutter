@@ -70,6 +70,7 @@ class Fromscreen extends StatelessWidget {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return HomeScreen();
+                        //กลับHome
                       }));
                     }
                   },
