@@ -30,7 +30,7 @@ class TransactionDB {
     var db = await this.openDatabese();
     var store = intMapStoreFactory.store("expense");
 
-    //json
+    //json ข้อมูล
     store.add(db, {
       "title": statement.title,
       "amount": statement.amount,
