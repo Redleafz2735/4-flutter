@@ -1,3 +1,6 @@
+import 'dart:html';
+
+import 'package:flutter_application_1/models/Transactions.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
@@ -20,6 +23,18 @@ class TransactionDB {
     Database db = await dbFactory.openDatabase(dbLocation);
     return db;
   }
-  //บันทึกข้อมูล
 
+  //บันทึกข้อมูล
+  InsertData(Transactions statement) async {
+    //ฐานข้อมูล => store
+    var db = await this.openDatabese();
+    var store = intMapStoreFactory.store("expense");
+
+    //json
+    store.add(db, {
+      "title": statement.title,
+      "amount": statement.amount,
+      "date": statement.date
+    });
+  }
 }
