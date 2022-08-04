@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 class Fromscreen extends StatelessWidget {
   final formkey = GlobalKey<FormState>();
+
+  // contoller
+  final titleController = TextEditingController(); // รับค่าชื่อรายการ
+  final amountController = TextEditingController(); //รับตัวเลขจำนวนเงิน
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +22,7 @@ class Fromscreen extends StatelessWidget {
                 TextFormField(
                   decoration: new InputDecoration(labelText: "ชื่อรายการ"),
                   autofocus: true,
+                  controller: titleController,
                   validator: (var str) {
                     //ชือ่รายการเป็นค่่าว่าง
                     if (str!.isEmpty) {
@@ -29,6 +34,7 @@ class Fromscreen extends StatelessWidget {
                 TextFormField(
                     decoration: new InputDecoration(labelText: "จำนวนเงิน"),
                     keyboardType: TextInputType.number,
+                    controller: amountController,
                     validator: (var str) {
                       //ชือ่รายการเป็นค่่าว่าง
                       if (str!.isEmpty) {
@@ -45,6 +51,11 @@ class Fromscreen extends StatelessWidget {
                   textColor: Colors.white,
                   onPressed: () {
                     if (formkey.currentState!.validate()) {
+                      var title = titleController.text;
+                      var amount = amountController.text;
+
+                      print(title);
+                      print(amount);
                       Navigator.pop(context);
                     }
                   },
