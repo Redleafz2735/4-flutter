@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/Transactions.dart';
 import 'package:flutter_application_1/providers/transaction_provider.dart';
+import 'package:flutter_application_1/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 class Fromscreen extends StatelessWidget {
@@ -24,7 +25,7 @@ class Fromscreen extends StatelessWidget {
               children: [
                 TextFormField(
                   decoration: new InputDecoration(labelText: "ชื่อรายการ"),
-                  autofocus: true,
+                  autofocus: false,
                   controller: titleController,
                   validator: (var str) {
                     //ชือ่รายการเป็นค่่าว่าง
@@ -66,7 +67,10 @@ class Fromscreen extends StatelessWidget {
                       var provider = Provider.of<TransactionProvider>(context,
                           listen: false);
                       provider.addTransaction(statement);
-                      Navigator.pop(context);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return HomeScreen();
+                      }));
                     }
                   },
                 )
