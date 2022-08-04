@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/Transaction.dart';
+import 'package:flutter_application_1/providers/transaction_provider.dart';
+import 'package:provider/provider.dart';
 
 class Fromscreen extends StatelessWidget {
   final formkey = GlobalKey<FormState>();
@@ -53,9 +56,16 @@ class Fromscreen extends StatelessWidget {
                     if (formkey.currentState!.validate()) {
                       var title = titleController.text;
                       var amount = amountController.text;
+                      // เตรียมข้อมูล
+                      Transaction statement = Transaction(
+                          title: title,
+                          amount: double.parse(amount),
+                          date: DateTime.now()); //pbject
 
-                      print(title);
-                      print(amount);
+                      // เรียก Provider
+                      var provider = Provider.of<TransactionProvider>(context,
+                          listen: false);
+                      provider.addTransaction(statement);
                       Navigator.pop(context);
                     }
                   },
